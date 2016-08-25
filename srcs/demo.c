@@ -1,3 +1,4 @@
+#include <libft.h>
 #include <ft_select.h>
 
 static void	init_term(void)
