@@ -1,87 +1,70 @@
 #include <ft_select.h>
 
-static t_elem	*save_elems(char **av)
-{
-	t_elem	*ret;
-	t_elem	*new;
-	t_elem	*first;
-	int	i;
+#include <stdio.h>
 
-	ret = NULL;
-	i = 1;
-	while (av[i])
+int tputc(int c)
+{
+	return ((int)write(1, &c, 1));
+}
+
+int main	(void)
+{
+	char	*term_name;
+	int		success;
+
+	struct termios	default_term;
+	struct termios	term;
+
+	// On recup les informations obligatoire du terminal
+	term_name = getenv("TERM");
+	if (term_name == NULL)
+		term_name = "DEFAULT_TERM"; //TODO : A voir si bien DEFAULT_TERM
+	
+	success = tgetent(term_buffer, term_name);
+	if (success < 0)
+		return (printf("Error 1\n")); // TODO : Gestion erreur, "Could not access the termcap data base."
+	else if (success == 0)
+		return (printf("Error 2\n")); // TODO : Error : "Terminal type $termtype is not defined."
+
+	
+	// On passe en mode pleine ecran
+	tputs(tgetstr("ti", NULL), 0, tputc);
+	
+	
+	if (tcgetattr(0, &term) == -1 || tcgetattr(0, &default_term))
+		return (printf("Error 3\n"));
+
+	term.c_lflag &= ~(ICANON | ECHO);
+	term.c_cc[VMIN] = 1;
+	term.c_cc[VTIME] = 0;
+
+	tcsetattr(0, TCSADRAIN, &term);
+
+	char key[3];
+
+	while (1)
 	{
-		if (!(new = (t_elem *)malloc(sizeof(t_elem))))
-			return (NULL);
-		new->content = av[i];
-		if (ret == NULL)
+		ft_bzero(key, 3);
+		read(0, key, 3);
+
+		if (key[0] == 27)
 		{
-			ret = new;
-			ret->next = ret;
-			ret->prev = ret;
-			first = ret;
+			if (key[1] == 91)
+				tputs("Arrow\n", 0, tputc); // TODO : Passe pas une fois sur deux
+			else if (key[1] == 0)
+			{
+				ft_putstr_fd(tgetstr("te", NULL), 1); 
+				tcsetattr(0, TCSADRAIN, &default_term);
+				return (0);
+			}
 		}
-		else
-		{
-			new->next = ret;
-			new->prev = first;
-			ret->prev = new;
-			first->next = new;
-			ret = new;	
-		}
-		i++;
 	}
-	return (ret);
-}
 
-size_t	getlonger(t_elem *elem, int nb)
-{
-	size_t	max;
 
-	max = 0;
-	while (nb)
-	{
-		if (ft_strlen(elem->content) > max)
-			max = ft_strlen(elem->content);
-		elem = elem->next;
-		nb--;
-	}
-	return (max);
-}
 
-void	print_len(char *s, size_t len)
-{
-	ft_putstr(s);
-	len -= ft_strlen(s);
-	if (len)
-	{
-		while (len)
-		{
-			ft_putchar(' ');
-			len--;
-		}	
-	}
-}
+	// Ferme le plein ecran
+	tcsetattr(0, TCSADRAIN, &default_term);
+	tputs(tgetstr("te", NULL), 0, tputc);
 
-int	test(int c)
-{
-	write(2, &c, 1);
 	return (1);
 }
-
-int	main(int ac, char **av)
-{
-	t_elem	*elem;
-	char	*termtype;
-	char	termbuff[2048];
-	
-	termtype = getenv("TERM");
-	tgetent(termbuff, termtype);
-	if (ac > 1)
-	{
-		elem = save_elems(av);
-
-	}
-	return (0);
-}
-
