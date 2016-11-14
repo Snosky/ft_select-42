@@ -84,23 +84,23 @@ int main	(int ac, char **av)
 			longer = ft_strlen(av[w]);
 	longer += 2;
 
-	while (1)
+	while (42)
 	{
 		int col;
-		int	colcount = 0;
+		int colcount = 0;
 		int row = 0;
+		
 		for (int z = 0; z < ac; z++)
 		{
-			col = colcount * longer;
-			if (col + longer > term->winsize.ws_col)
+			if (row > term->winsize.ws_row)
 			{
-				row++;
-				colcount = 0;
-				col = colcount * longer;
+				row = 0;
+				colcount++;
 			}
+			col = colcount * longer;
 			tputs(tgoto(pos, col, row), 1, tputc);
 			tputs(av[z], 0, tputc);
-			colcount++;
+			row++;
 		}
 	}
 	/* End */
