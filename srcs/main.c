@@ -31,6 +31,7 @@ void	sig_exit(int i)
 	term = ft_term();
 	(void)i;
 
+	tputs(tgetstr("ve", NULL), 0, tputc);
 	tputs(tgetstr("te", NULL), 0, tputc);
 	tcsetattr(0, TCSADRAIN, &(term->default_term));
 	exit(EXIT_SUCCESS);
@@ -73,14 +74,42 @@ int main	(int ac, char **av)
 	signal(SIGWINCH, sig_win_resize);
 	signal(SIGINT, sig_exit); // Signal Ctrl-C
 	
-	char key[3];
+
+	/* Test affichage colonnes */
+	char *pos = tgetstr("cm", NULL);
+	int longer = 0;
+
+	for (int w = 0; w < ac; w++)
+		if ((int)ft_strlen(av[w]) > longer)
+			longer = ft_strlen(av[w]);
+	longer += 2;
 
 	while (1)
 	{
+		int col;
+		int	colcount = 0;
+		int row = 0;
+		for (int z = 0; z < ac; z++)
+		{
+			col = colcount * longer;
+			if (col + longer > term->winsize.ws_col)
+			{
+				row++;
+				colcount = 0;
+				col = colcount * longer;
+			}
+			tputs(tgoto(pos, col, row), 1, tputc);
+			tputs(av[z], 0, tputc);
+			colcount++;
+		}
+	}
+	/* End */
+
+	//char key[3];
+	/*while (1)
+	{
 		// On clear le terminal
 		tputs(tgetstr("cl", NULL), 0, tputc);
-
-		//Window resize : TODO lib ncurses ?!
 
 		//Test center
 		char *middle = "Hello World\n";
@@ -109,13 +138,7 @@ int main	(int ac, char **av)
 		
 		ft_bzero(key, 3);
 		read(0, key, 3);
-	}
-
-
-
-	// Ferme le plein ecran
-	tcsetattr(0, TCSADRAIN, &(term->default_term));
-	tputs(tgetstr("te", NULL), 0, tputc);
+	}*/
 
 	return (1);
 }

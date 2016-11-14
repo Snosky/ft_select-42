@@ -30,7 +30,7 @@ $(EXEC):
 	@echo "\\033[1;34m--- $(EXEC) compilation done ---\\033[39m"
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	echo -n "\\033[1;32m.\\033[0;39m"
+	@echo -n "\\033[1;32m.\\033[0;39m"
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES)
 
 .PHONY: directories re clean fclean
@@ -39,12 +39,12 @@ re: fclean all
 
 clean:
 	rm -rf $(OBJDIR)
-	echo "\033[32m--- Objects form $(EXEC) deleted ---\\033[0;39m"
+	@echo "\033[32m--- Objects form $(EXEC) deleted ---\\033[0;39m"
 	#@($(MAKE) -C libft $@)
 
 fclean: clean
 	rm -rf $(EXEC)
-	echo "\033[32m--- $(EXEC) deleted ---\\033[0;39m"
+	@echo "\033[32m--- $(EXEC) deleted ---\\033[0;39m"
 	#@($(MAKE) -C libft $@)
 
 directories: $(DIRS)
