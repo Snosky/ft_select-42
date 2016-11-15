@@ -4,24 +4,17 @@
 
 int	main(int ac, char **av)
 {
+	int	key;
 	init_term();
 	init_signals();
 
-	/* TODO : A Faire mieu :) */
-	t_term *term = ft_term();
+	while (42)
+	{
+		refresh_screen();
+		read(0, &key, sizeof(int));
+	}
 
-	char *pos = tgetstr("cm", NULL);
-
-	/* Header */
-	char *test = "ft_select by tpayen";
-	int center = (term->winsize.ws_col / 2) - (ft_strlen(test) / 2);
-	tputs(tgoto(pos, center, 0), 1, tputc);
-	tputs(test, 0, tputc);
-	/* End Header */
-	while(1);
 	(void)ac;(void)av;
-
-	reset_default_term();
 }
 /*
 int main	(int ac, char **av)

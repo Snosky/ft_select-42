@@ -31,6 +31,7 @@ void	reset_default_term(void);
 int		tputc(int i);
 void	ft_tputs(char *id);
 void	winsize(void);
+void	refresh_screen(void);
 
 void	ft_error(char *err);
 
