@@ -11,6 +11,16 @@ SRCDIR = srcs/
 OBJDIR = objs/
 
 SRC_FILES = main.c \
+			ft_term.c \
+			ft_error.c \
+			ft_tputs.c \
+			tputc.c \
+			init_term.c \
+			reset_default_term.c \
+			init_signals.c \
+			sig_exit.c \
+			sig_win_resize.c \
+			winsize.c \
 
 DIRS = $(OBJDIR)
 

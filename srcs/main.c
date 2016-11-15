@@ -2,41 +2,28 @@
 
 #include <stdio.h>
 
-int tputc(int c)
+int	main(int ac, char **av)
 {
-	return ((int)write(1, &c, 1));
+	init_term();
+	init_signals();
+
+	/* TODO : A Faire mieu :) */
+	t_term *term = ft_term();
+
+	char *pos = tgetstr("cm", NULL);
+
+	/* Header */
+	char *test = "ft_select by tpayen";
+	int center = (term->winsize.ws_col / 2) - (ft_strlen(test) / 2);
+	tputs(tgoto(pos, center, 0), 1, tputc);
+	tputs(test, 0, tputc);
+	/* End Header */
+	while(1);
+	(void)ac;(void)av;
+
+	reset_default_term();
 }
-
-t_term	*ft_term(void)
-{
-	static t_term	term;
-
-	return (&term);
-}
-
-void	sig_win_resize(int i)
-{
-	t_term	*term;
-
-	(void)i;
-	term = ft_term();
-	if (ioctl(STDIN_FILENO, TIOCGWINSZ, (char *)&term->winsize) < 0)
-			printf("Error 4\n"); // TODO : Error
-}
-
-void	sig_exit(int i)
-{
-	t_term	*term;
-	
-	term = ft_term();
-	(void)i;
-
-	tputs(tgetstr("ve", NULL), 0, tputc);
-	tputs(tgetstr("te", NULL), 0, tputc);
-	tcsetattr(0, TCSADRAIN, &(term->default_term));
-	exit(EXIT_SUCCESS);
-}
-
+/*
 int main	(int ac, char **av)
 {
 	t_term	*term = ft_term();
@@ -68,14 +55,14 @@ int main	(int ac, char **av)
 	// On passe en mode pleine ecran
 	tputs(tgetstr("ti", NULL), 0, tputc);
 	//On cache le cursor
-	tputs(tgetstr("vi", NULL), 0, tputc);
+	//tputs(tgetstr("vi", NULL), 0, tputc);
 
 	sig_win_resize(0); // Call car initialization
 	signal(SIGWINCH, sig_win_resize);
 	signal(SIGINT, sig_exit); // Signal Ctrl-C
-	
 
-	/* Test affichage colonnes */
+	* Test affichage colonnes */
+	/*
 	char *pos = tgetstr("cm", NULL);
 	int longer = 0;
 
@@ -103,7 +90,7 @@ int main	(int ac, char **av)
 			row++;
 		}
 	}
-	/* End */
+	* End */
 
 	//char key[3];
 	/*while (1)
@@ -139,6 +126,6 @@ int main	(int ac, char **av)
 		ft_bzero(key, 3);
 		read(0, key, 3);
 	}*/
-
+/*
 	return (1);
-}
+}*/

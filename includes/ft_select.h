@@ -25,4 +25,16 @@ typedef struct	s_term
 	char		*name;
 }				t_term;
 
+void	init_term(void);
+t_term	*ft_term(void);
+void	reset_default_term(void);
+int		tputc(int i);
+void	ft_tputs(char *id);
+void	winsize(void);
+
+void	ft_error(char *err);
+
+void	init_signals(void);
+void	sig_win_resize(int i);
+void	sig_exit(int i);
 #endif
