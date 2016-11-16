@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:00:24 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/16 15:06:03 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/16 20:45:10 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	print_entries(void)
 		print_entry(i, term, &colcount, &row, nbrow);
 		i++;
 	}
-	ft_putnbr(tgetflag("hs"));
 }
