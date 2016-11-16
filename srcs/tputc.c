@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 01:33:45 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/15 01:35:19 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/16 01:49:40 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,8 @@
 
 int	tputc(int c)
 {
-	return ((int)write(1, &c, 1));
+	t_term	*term;
+
+	term = ft_term();
+	return ((int)write(term->fd, &c, 1));
 }

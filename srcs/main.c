@@ -4,17 +4,18 @@
 
 int	main(int ac, char **av)
 {
-	int	key;
 	init_term();
 	init_signals();
+	init_entries(ac, av);
 
 	while (42)
 	{
 		refresh_screen();
-		read(0, &key, sizeof(int));
+		if (get_key() == -1)
+			break;
+		//read(0, &key, sizeof(int));
 	}
-
-	(void)ac;(void)av;
+	reset_default_term();
 }
 /*
 int main	(int ac, char **av)

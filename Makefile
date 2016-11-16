@@ -22,6 +22,12 @@ SRC_FILES = main.c \
 			sig_win_resize.c \
 			winsize.c \
 			refresh_screen.c \
+			init_entries.c \
+			print_entries.c \
+			free_entries.c \
+			get_key.c \
+			ft_goto_up.c \
+			ft_goto_down.c \
 
 DIRS = $(OBJDIR)
 

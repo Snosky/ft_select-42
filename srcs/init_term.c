@@ -6,18 +6,37 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 00:57:21 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/15 01:52:06 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/16 01:49:05 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-void	init_term(void)
+static void	init_term2(void)
+{
+	t_term	*term;
+
+	term = ft_term();
+	if ((term->cap[CL] = tgetstr("cl", NULL)) == NULL ||
+		(term->cap[US] = tgetstr("us", NULL)) == NULL ||
+		(term->cap[UE] = tgetstr("ue", NULL)) == NULL || 
+		(term->cap[MR] = tgetstr("mr", NULL)) == NULL ||
+		(term->cap[ME] = tgetstr("me", NULL)) == NULL ||
+		(term->cap[CM] = tgetstr("cm", NULL)) == NULL)
+		ft_error("ft_select: error: Can't find a termcap.");
+	ft_tputs("ti");
+	ft_tputs("vi");
+	winsize();
+}
+
+void		init_term(void)
 {
 	t_term	*term;
 	int		success;
 
 	term = ft_term();
+	if ((term->fd = open(ttyname(STDIN_FILENO), O_WRONLY)) == -1)
+		ft_error("ft_select: error: Can't get file descriptor.");
 	term->name = getenv("TERM");
 	if (term->name == NULL)
 		term->name = "DEFAULT_TERM";
@@ -34,7 +53,5 @@ void	init_term(void)
 	term->term.c_cc[VMIN] = 1;
 	term->term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSADRAIN, &(term->term));
-	ft_tputs("ti");
-	ft_tputs("vi");
-	winsize();
+	init_term2();
 }

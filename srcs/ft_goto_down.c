@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   refresh_screen.c                                   :+:      :+:    :+:   */
+/*   ft_goto_down.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 01:58:32 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/16 01:34:48 by tpayen           ###   ########.fr       */
+/*   Created: 2016/11/16 02:33:54 by tpayen            #+#    #+#             */
+/*   Updated: 2016/11/16 02:35:35 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-void	refresh_screen(void)
+void	ft_goto_down(void)
 {
 	t_term	*term;
+	int		i;
 
 	term = ft_term();
-
-	tputs(term->cap[CL], 0, tputc);
-	print_entries();
-	/*	
-	t_term	*term;
-
-	term = ft_term();
-
-	ft_tputs("cl");
-
-	char *pos = tgetstr("cm", NULL);
-	char *test = "~FT_SELECT BY TPAYEN~";
-	int	center = (term->winsize.ws_col / 2) - (ft_strlen(test) / 2);
-	int center2 = (term->winsize.ws_row / 2);
-	tputs(tgoto(pos, center, center2), 1, tputc);
-	tputs(test, 0, tputc);
-	*/
+	i = term->hover + 1;
+	if (i >= term->nb_entries)
+		i = 0;
+	while (i != term->hover && !term->entries[i].visible)
+	{
+		if (i >= term->nb_entries)
+			i = 0;
+		i++;
+	}
+	term->hover = i;
 }
