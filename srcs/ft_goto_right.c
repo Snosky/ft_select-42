@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 01:22:03 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 01:48:28 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/21 18:33:12 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	ft_goto_right(void)
 		term->hover = 0;
 		return ;
 	}
-	if (tmp >= term->winsize.ws_row * term->nb_column)
+	while (term->entries[tmp].visible == 0) // Mouai
+		tmp++;
+	if (tmp >= ((term->nb_column + term->padding_left) * term->winsize.ws_row))
 		term->padding_left++;
 	term->hover = tmp;
 }

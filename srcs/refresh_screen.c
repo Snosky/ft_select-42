@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 01:58:32 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 02:05:10 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/21 18:18:16 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	refresh_screen(void)
 
 	tputs(term->cap[CL], 0, tputc);
 	print_entries();
-	scroll_bar();
+	//scroll_bar();
 	/*	
 	t_term	*term;
 
