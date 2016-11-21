@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   refresh_screen.c                                   :+:      :+:    :+:   */
+/*   scroll_bar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 01:58:32 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 02:05:10 by tpayen           ###   ########.fr       */
+/*   Created: 2016/11/21 02:02:33 by tpayen            #+#    #+#             */
+/*   Updated: 2016/11/21 02:23:04 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-void	refresh_screen(void)
+/* TODO : Pas dur */
+void	scroll_bar(void)
 {
 	t_term	*term;
+	int		i;
+	int		total_col;
+	int		bar_size;
 
 	term = ft_term();
+	i = 0;
+	total_col = (term->nb_entries / term->winsize.ws_row) + 1;
+	bar_size = ((term->nb_column / total_col) * 100);
+	if (total_col <= term->nb_column)
+		return ;
 
-	tputs(term->cap[CL], 0, tputc);
-	print_entries();
-	scroll_bar();
-	/*	
-	t_term	*term;
-
-	term = ft_term();
-
-	ft_tputs("cl");
-
-	char *pos = tgetstr("cm", NULL);
-	char *test = "~FT_SELECT BY TPAYEN~";
-	int	center = (term->winsize.ws_col / 2) - (ft_strlen(test) / 2);
-	int center2 = (term->winsize.ws_row / 2);
-	tputs(tgoto(pos, center, center2), 1, tputc);
-	tputs(test, 0, tputc);
-	*/
+	/* Ceci est un test */
+	tputs(tgoto(term->cap[CM], 0, term->winsize.ws_row), 1, tputc);
+	while (i < term->winsize.ws_col)
+	{
+		tputs("-", 0, tputc);
+		i++;
+	}
 }

@@ -69,11 +69,12 @@ void	init_entries(int ac, char **av);
 void	print_entries(void);
 void	free_entries(void);
 
+int		get_key(void);
 void	ft_goto_up(void);
 void	ft_goto_down(void);
 void	ft_goto_right(void);
 
-int		get_key(void);
+void	scroll_bar(void);
 
 void	ft_error(char *err);
 
