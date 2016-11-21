@@ -28,6 +28,7 @@ SRC_FILES = main.c \
 			get_key.c \
 			ft_goto_up.c \
 			ft_goto_down.c \
+			ft_goto_right.c \
 
 DIRS = $(OBJDIR)
 

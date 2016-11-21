@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   refresh_screen.c                                   :+:      :+:    :+:   */
+/*   ft_goto_left.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 01:58:32 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 01:00:18 by tpayen           ###   ########.fr       */
+/*   Created: 2016/11/21 01:39:07 by tpayen            #+#    #+#             */
+/*   Updated: 2016/11/21 01:47:33 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-void	refresh_screen(void)
+void	ft_goto_left(void)
 {
 	t_term	*term;
+	int		tmp;
 
 	term = ft_term();
+	tmp = term->hover - term->winsize.ws_row;
+	if (tmp < 0)
+	{
+		term->padding_left = term->nb_entries / term->nb_column;
+		term->hover = term->nb_entries;
+		return ;
+	}
 
-	tputs(term->cap[CL], 0, tputc);
-	print_entries();
-	/*	
-	t_term	*term;
-
-	term = ft_term();
-
-	ft_tputs("cl");
-
-	char *pos = tgetstr("cm", NULL);
-	char *test = "~FT_SELECT BY TPAYEN~";
-	int	center = (term->winsize.ws_col / 2) - (ft_strlen(test) / 2);
-	int center2 = (term->winsize.ws_row / 2);
-	tputs(tgoto(pos, center, center2), 1, tputc);
-	tputs(test, 0, tputc);
-	*/
 }

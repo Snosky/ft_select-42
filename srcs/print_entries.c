@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:00:24 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/16 20:45:10 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/21 01:18:09 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ static void	print_entry(int i, t_term *term, int *colcount, int *row, int nbrow)
 
 	if (term->entries[i].visible == 0)
 		return ;
-	if (*row > nbrow)
+	if (*row >= nbrow)
 	{
 		*row = 0;
 		(*colcount)++;
 	}
+	if (*colcount >= term->nb_column)
+		return ;
 	col = *colcount * (term->longest + 2);
 	tputs(tgoto(term->cap[CM], col, *row), 1, tputc);
 	if (term->hover == i)
@@ -45,7 +47,7 @@ void	print_entries(void)
 	term = ft_term();
 	colcount = 0;
 	row = 0;
-	i = 0;
+	i = term->padding_left * term->winsize.ws_row;
 	nbrow = term->winsize.ws_row;
 	if (tgetflag("hs"))
 		nbrow = term->winsize.ws_row - tgetnum("ws");

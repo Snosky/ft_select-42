@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   refresh_screen.c                                   :+:      :+:    :+:   */
+/*   ft_goto_right.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 01:58:32 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 01:00:18 by tpayen           ###   ########.fr       */
+/*   Created: 2016/11/21 01:22:03 by tpayen            #+#    #+#             */
+/*   Updated: 2016/11/21 01:48:28 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-void	refresh_screen(void)
+// TODO : Si element delete ?
+// TODO:  Pas mal de truc a revoir, le tmp correspond pas vraiment a la position du curseur comme il le devrait mais a quel entry est hover
+void	ft_goto_right(void)
 {
 	t_term	*term;
+	int		tmp;
 
 	term = ft_term();
-
-	tputs(term->cap[CL], 0, tputc);
-	print_entries();
-	/*	
-	t_term	*term;
-
-	term = ft_term();
-
-	ft_tputs("cl");
-
-	char *pos = tgetstr("cm", NULL);
-	char *test = "~FT_SELECT BY TPAYEN~";
-	int	center = (term->winsize.ws_col / 2) - (ft_strlen(test) / 2);
-	int center2 = (term->winsize.ws_row / 2);
-	tputs(tgoto(pos, center, center2), 1, tputc);
-	tputs(test, 0, tputc);
-	*/
+	tmp = term->hover + term->winsize.ws_row;
+	if (tmp > term->nb_entries)
+	{
+		term->padding_left = 0;
+		term->hover = 0;
+		return ;
+	}
+	if (tmp >= term->winsize.ws_row * term->nb_column)
+		term->padding_left++;
+	term->hover = tmp;
 }

@@ -53,6 +53,8 @@ typedef struct	s_term
 	int			nb_entries;
 	int			longest;
 	int			hover;
+	int			nb_column;
+	int			padding_left;
 }				t_term;
 
 void	init_term(void);
@@ -69,6 +71,7 @@ void	free_entries(void);
 
 void	ft_goto_up(void);
 void	ft_goto_down(void);
+void	ft_goto_right(void);
 
 int		get_key(void);
 

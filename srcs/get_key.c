@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:43:08 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/16 02:55:07 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/21 01:24:45 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	get_key()
 	else if (key == K_DOWN)
 		ft_goto_down();
 	else if (key == K_LEFT)
-		term->hover -= (term->winsize.ws_row + 1);
+		term->hover -= term->winsize.ws_row;
 	else if (key == K_RIGHT)
-		term->hover += (term->winsize.ws_row + 1);
+		ft_goto_right();
 	else if (key == K_DELETE || key == K_BACKSPACE)
 	{
 		term->entries[term->hover].visible = 0;
