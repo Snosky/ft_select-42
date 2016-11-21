@@ -6,30 +6,30 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 01:22:03 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 18:33:12 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/21 20:08:11 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-// TODO : Si element delete ?
-// TODO:  Pas mal de truc a revoir, le tmp correspond pas vraiment a la position du curseur comme il le devrait mais a quel entry est hover
 void	ft_goto_right(void)
 {
 	t_term	*term;
-	int		tmp;
+	int		i;
 
 	term = ft_term();
-	tmp = term->hover + term->winsize.ws_row;
-	if (tmp > term->nb_entries)
+	i = 0;
+	while (i < term->winsize.ws_row)
 	{
-		term->padding_left = 0;
-		term->hover = 0;
-		return ;
+		term->hover++;
+		if (term->hover >= term->nb_entries)
+		{
+			term->padding_left = 0;
+			term->hover = 0;
+		}
+		if (term->entries[term->hover].visible)
+			i++;
 	}
-	while (term->entries[tmp].visible == 0) // Mouai
-		tmp++;
-	if (tmp >= ((term->nb_column + term->padding_left) * term->winsize.ws_row))
+	if (term->hover >= ((term->nb_column + term->padding_left) * term->winsize.ws_row))
 		term->padding_left++;
-	term->hover = tmp;
 }

@@ -51,6 +51,7 @@ typedef struct	s_term
 	int			fd;
 	t_entry		*entries;
 	int			nb_entries;
+	int			total_entries;
 	int			longest;
 	int			hover;
 	int			nb_column;
@@ -73,6 +74,7 @@ int		get_key(void);
 void	ft_goto_up(void);
 void	ft_goto_down(void);
 void	ft_goto_right(void);
+void	ft_goto_left(void);
 
 void	scroll_bar(void);
 

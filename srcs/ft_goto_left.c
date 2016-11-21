@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 01:39:07 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 01:47:33 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/21 20:10:43 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 void	ft_goto_left(void)
 {
 	t_term	*term;
-	int		tmp;
+	int		i;
 
 	term = ft_term();
-	tmp = term->hover - term->winsize.ws_row;
-	if (tmp < 0)
+	i = term->winsize.ws_row;
+	while (i > 0)
 	{
-		term->padding_left = term->nb_entries / term->nb_column;
-		term->hover = term->nb_entries;
-		return ;
+		term->hover--;
+		if (term->hover < 0)
+			term->hover = term->total_entries;
+		if (term->entries[term->hover].visible)
+			i--;
 	}
-
+	if (term->hover <= (term->padding_left * term->winsize.ws_row))
+		term->padding_left--;
 }

@@ -29,6 +29,7 @@ SRC_FILES = main.c \
 			ft_goto_up.c \
 			ft_goto_down.c \
 			ft_goto_right.c \
+			ft_goto_left.c \
 			scroll_bar.c \
 
 DIRS = $(OBJDIR)
