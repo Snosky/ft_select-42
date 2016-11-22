@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 01:08:02 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/15 01:19:22 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/22 16:25:01 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	sig_exit(int i)
 {
 	reset_default_term();
+	free_entries();
 	exit(EXIT_SUCCESS);
 	(void)i;
 }

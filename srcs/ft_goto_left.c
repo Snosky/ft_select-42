@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 01:39:07 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 20:10:43 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/22 16:06:40 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ void	ft_goto_left(void)
 	{
 		term->hover--;
 		if (term->hover < 0)
+		{
 			term->hover = term->total_entries;
+			term->padding_left = term->total_column - term->nb_column;
+		}
 		if (term->entries[term->hover].visible)
 			i--;
 	}
-	if (term->hover <= (term->padding_left * term->winsize.ws_row))
+	if (term->hover < (term->padding_left * term->winsize.ws_row))
 		term->padding_left--;
 }

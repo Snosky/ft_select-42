@@ -6,16 +6,18 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:00:24 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 01:18:09 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/22 16:39:13 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-static void	print_entry(int i, t_term *term, int *colcount, int *row, int nbrow)
+static void	print_entry(int i, int *colcount, int *row, int nbrow)
 {
-	int	col;
+	int		col;
+	t_term	*term;
 
+	term = ft_term();
 	if (term->entries[i].visible == 0)
 		return ;
 	if (*row >= nbrow)
@@ -36,7 +38,25 @@ static void	print_entry(int i, t_term *term, int *colcount, int *row, int nbrow)
 	(*row)++;
 }
 
-void	print_entries(void)
+static int	jump_hidden(t_term *term)
+{
+	int tojmp;
+	int	i;
+	int	ret;
+
+	tojmp = term->padding_left * term->winsize.ws_row;
+	i = 0;
+	ret = 0;
+	while (i < tojmp)
+	{
+		if (term->entries[ret].visible)
+			i++;
+		ret++;
+	}
+	return (ret);
+}
+
+void		print_entries(void)
 {
 	t_term	*term;
 	int		colcount;
@@ -47,13 +67,13 @@ void	print_entries(void)
 	term = ft_term();
 	colcount = 0;
 	row = 0;
-	i = term->padding_left * term->winsize.ws_row;
+	i = jump_hidden(term);
 	nbrow = term->winsize.ws_row;
 	if (tgetflag("hs"))
 		nbrow = term->winsize.ws_row - tgetnum("ws");
-	while (i < term->nb_entries)
+	while (i < term->total_entries)
 	{
-		print_entry(i, term, &colcount, &row, nbrow);
+		print_entry(i, &colcount, &row, nbrow);
 		i++;
 	}
 }

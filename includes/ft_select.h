@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_select.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/22 16:40:33 by tpayen            #+#    #+#             */
+/*   Updated: 2016/11/22 17:19:21 by tpayen           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
@@ -12,12 +24,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# ifdef unix
-	static char term_buffer[2048];
-# else
-#  define term_buffer 0
-# endif
-
 # define K_UP 4283163
 # define K_DOWN 4348699
 # define K_LEFT 4479771
@@ -28,20 +34,20 @@
 # define K_DELETE 2117294875
 # define K_BACKSPACE 127
 
-enum cap {CL, US, UE, RV, MR, ME, CM, NB_CAP};
+enum	e_cap {CL, US, UE, RV, MR, ME, CM, NB_CAP};
 
-typedef struct	termios	t_termios;
-typedef struct	winsize	t_winsize;
+typedef struct termios	t_termios;
+typedef struct winsize	t_winsize;
 
-typedef struct s_entry
+typedef struct			s_entry
 {
 	char	*name;
 	int		len;
 	short	visible;
 	short	selected;
-}				t_entry;
+}						t_entry;
 
-typedef struct	s_term
+typedef struct			s_term
 {
 	t_termios	term;
 	t_termios	default_term;
@@ -55,32 +61,37 @@ typedef struct	s_term
 	int			longest;
 	int			hover;
 	int			nb_column;
+	int			total_column;
 	int			padding_left;
-}				t_term;
+}						t_term;
 
-void	init_term(void);
-t_term	*ft_term(void);
-void	reset_default_term(void);
-int		tputc(int i);
-void	ft_tputs(char *id);
-void	winsize(void);
-void	refresh_screen(void);
+void					init_term(void);
+t_term					*ft_term(void);
+void					reset_default_term(void);
+int						tputc(int i);
+void					ft_tputs(char *id);
+void					winsize(void);
+void					refresh_screen(void);
 
-void	init_entries(int ac, char **av);
-void	print_entries(void);
-void	free_entries(void);
+void					init_entries(int ac, char **av);
+void					print_entries(void);
+void					free_entries(void);
 
-int		get_key(void);
-void	ft_goto_up(void);
-void	ft_goto_down(void);
-void	ft_goto_right(void);
-void	ft_goto_left(void);
+int						get_key(void);
+void					ft_goto_up(void);
+void					ft_goto_down(void);
+void					ft_goto_right(void);
+void					ft_goto_left(void);
+void					ft_delete(void);
+void					do_space(void);
+int						return_result(void);
 
-void	scroll_bar(void);
+void					scroll_bar(void);
 
-void	ft_error(char *err);
+void					ft_error(char *err);
 
-void	init_signals(void);
-void	sig_win_resize(int i);
-void	sig_exit(int i);
+void					init_signals(void);
+void					sig_win_resize(int i);
+void					sig_exit(int i);
+void					sig_stop(int i);
 #endif

@@ -20,6 +20,7 @@ SRC_FILES = main.c \
 			init_signals.c \
 			sig_exit.c \
 			sig_win_resize.c \
+			sig_stop.c \
 			winsize.c \
 			refresh_screen.c \
 			init_entries.c \
@@ -30,6 +31,9 @@ SRC_FILES = main.c \
 			ft_goto_down.c \
 			ft_goto_right.c \
 			ft_goto_left.c \
+			ft_delete.c \
+			do_space.c \
+			return_result.c \
 			scroll_bar.c \
 
 DIRS = $(OBJDIR)

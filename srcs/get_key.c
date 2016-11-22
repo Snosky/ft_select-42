@@ -6,13 +6,13 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:43:08 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 20:06:45 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/22 16:31:46 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-int	get_key()
+int	get_key(void)
 {
 	t_term	*term;
 	int		key;
@@ -28,17 +28,15 @@ int	get_key()
 	else if (key == K_RIGHT)
 		ft_goto_right();
 	else if (key == K_DELETE || key == K_BACKSPACE)
-	{
-		term->entries[term->hover].visible = 0;
-		term->nb_entries--;
-		ft_goto_down();
-	}
+		ft_delete();
 	else if (key == K_SPACE)
-	{
-		term->entries[term->hover].selected = (term->entries[term->hover].selected) ? 0 : 1;
-		ft_goto_down();
-	}
+		do_space();
+	else if (key == K_RETURN)
+		return (return_result());
 	else if (key == K_ESC)
+	{
+		reset_default_term();
 		return (-1);
+	}
 	return (1);
 }
