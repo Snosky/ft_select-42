@@ -6,23 +6,12 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 02:20:51 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/22 16:32:58 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/24 02:56:35 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-static void	do_up(int *i, t_term *term)
-{
-	if (*i < 0)
-	{
-		if (term->total_column > term->nb_column)
-			term->padding_left = term->total_column - term->nb_column;
-		*i = term->total_entries - 1;
-	}
-}
-
-/* TODO : paddding_left-- quand en haut a droite; */
 void		ft_goto_up(void)
 {
 	t_term	*term;
@@ -30,10 +19,12 @@ void		ft_goto_up(void)
 
 	term = ft_term();
 	i = term->hover - 1;
-	do_up(&i, term);
+	if (i < 0)
+		i = term->total_entries - 1;
 	while (i != term->hover && !term->entries[i].visible)
 	{
-		do_up(&i, term);
+		if (i < 0)
+			i = term->total_entries - 1;
 		i--;
 	}
 	term->hover = i;

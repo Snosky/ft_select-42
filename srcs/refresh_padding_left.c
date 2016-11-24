@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_goto_down.c                                     :+:      :+:    :+:   */
+/*   refresh_padding_left.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/16 02:33:54 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/24 02:57:25 by tpayen           ###   ########.fr       */
+/*   Created: 2016/11/24 02:45:16 by tpayen            #+#    #+#             */
+/*   Updated: 2016/11/24 03:15:29 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-void		ft_goto_down(void)
+void	refresh_padding_left(void)
 {
 	t_term	*term;
-	int		i;
 
 	term = ft_term();
-	i = term->hover + 1;
-	if (i >= term->total_entries)
-		i = 0;
-	while (i != term->hover && !term->entries[i].visible)
-	{
-		if (i >= term->total_entries)
-			i = 0;
-		i++;
-	}
-	term->hover = i;
+	while (1)
+		if (term->total_column <= term->nb_column)
+		{
+			term->padding_left = 0;
+			break ;
+		}
+		else if (term->hover <= (term->padding_left * term->winsize.ws_row) - 1)
+			term->padding_left--;
+		else if (term->hover >= (term->nb_column * term->winsize.ws_row) + (term->padding_left * term->winsize.ws_row))
+			term->padding_left++;
+		else
+			break ;
 }

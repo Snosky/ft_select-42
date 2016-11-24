@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/22 17:19:21 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/24 02:49:20 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,6 @@ void					init_signals(void);
 void					sig_win_resize(int i);
 void					sig_exit(int i);
 void					sig_stop(int i);
+
+void					refresh_padding_left(void);
 #endif

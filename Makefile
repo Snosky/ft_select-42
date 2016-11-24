@@ -35,6 +35,7 @@ SRC_FILES = main.c \
 			do_space.c \
 			return_result.c \
 			scroll_bar.c \
+			refresh_padding_left.c \
 
 DIRS = $(OBJDIR)
 
