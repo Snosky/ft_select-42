@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 18:58:45 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 19:08:01 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct			s_entry
 {
 	char	*name;
 	int		len;
-	short	visible;
 	short	selected;
 }						t_entry;
 
