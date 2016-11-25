@@ -6,12 +6,12 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:00:24 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/22 16:39:13 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 18:59:18 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
-
+/*
 static void	print_entry(int i, int *colcount, int *row, int nbrow)
 {
 	int		col;
@@ -28,7 +28,7 @@ static void	print_entry(int i, int *colcount, int *row, int nbrow)
 	if (*colcount >= term->nb_column)
 		return ;
 	col = *colcount * (term->longest + 2);
-	tputs(tgoto(term->cap[CM], col, *row), 1, tputc);
+	tput<S-F7>s(tgoto(term->cap[CM], col, *row), 1, tputc);
 	if (term->hover == i)
 		tputs(term->cap[US], 0, tputc);
 	if (term->entries[i].selected)
@@ -74,6 +74,43 @@ void		print_entries(void)
 	while (i < term->total_entries)
 	{
 		print_entry(i, &colcount, &row, nbrow);
+		i++;
+	}
+}*/
+
+static void		print_entry(void)
+{
+	t_term	*term;
+	t_entry	*entry;
+
+	term = ft_term();
+	entry = (t_entry *)term->entries->content;
+	if ((t_entry *)term->hover->content == entry)
+		tputs(term->cap[US], 0, tputc);
+	if (entry->selected)
+		tputs(term->cap[MR], 0, tputc);
+	tputs(entry->name, 0, tputc);
+	tputs(term->cap[ME], 0, tputc);
+}
+
+void	print_entries(void)
+{
+	t_term	*term;
+	int		i;
+	int		col;
+
+	term = ft_term();
+	i = 0;
+	col = 0;
+	while (i < term->nb_entries)
+	{
+		if (i && i % term->winsize.ws_row == 0)
+			col++;
+		if (col < term->padding_left || col >= term->nb_column)
+			continue ;
+		tputs(tgoto(term->cap[CM], col * (term->longest + 2), i % term->winsize.ws_row), 1, tputc);
+		print_entry();
+		term->entries = term->entries->next;
 		i++;
 	}
 }

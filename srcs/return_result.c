@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:15:52 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/22 16:21:35 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 18:43:37 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	return_result(void)
 {
-	t_term	*term;
+	/*t_term	*term;
 	int		i;
 	int		first;
 
@@ -32,6 +32,6 @@ int	return_result(void)
 			first = 0;
 		}
 		i++;
-	}
+	}*/
 	return (-1);
 }

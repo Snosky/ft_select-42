@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:54:39 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/16 01:55:32 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 18:41:40 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_entries(void)
 	t_term	*term;
 
 	term = ft_term();
-	while (--term->nb_entries >= 0)
+	/*while (--term->nb_entries >= 0)
 		free(term->entries[term->nb_entries].name);
-	free(term->entries);
+	free(term->entries);*/
 }

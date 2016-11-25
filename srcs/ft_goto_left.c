@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 01:39:07 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 16:32:22 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 19:03:15 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,13 @@
 void	ft_goto_left(void)
 {
 	t_term	*term;
-	int		jmp;
-	int		oldhover;
+	int		i;
 
 	term = ft_term();
-	jmp = term->winsize.ws_row;
-	if (term->hover - jmp < 0)
-		return ;
-	oldhover = term->hover;
-	while (jmp)
+	i = 0;
+	while (i < term->winsize.ws_row)
 	{
-		if (term->hover == 0)
-		{
-			term->hover = oldhover;
-			return ;
-		}
-		if (term->entries[term->hover].visible)
-			jmp--;
-		term->hover--;
+		term->hover = term->hover->prev;
+		i++;
 	}
 }

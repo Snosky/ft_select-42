@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 00:49:27 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 18:26:19 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 18:58:57 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_entries(int ac, char **av)
 	term = ft_term();
 	term->longest = 0;
 	term->nb_entries = ac - 1;
-	term->hover = 0;
 	term->entries = NULL;
 	i = 1;
 	while (i < ac)
@@ -37,6 +36,7 @@ void	init_entries(int ac, char **av)
 			term->longest = entry.len;
 		i++;
 	}
+	term->hover = term->entries;
 }
 
 /*
