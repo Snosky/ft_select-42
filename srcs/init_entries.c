@@ -6,12 +6,40 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 00:49:27 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/22 16:33:39 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 18:26:19 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
+void	init_entries(int ac, char **av)
+{
+	t_term	*term;
+	int		i;
+	t_lstd	*tmp;
+	t_entry	entry;
+
+	term = ft_term();
+	term->longest = 0;
+	term->nb_entries = ac - 1;
+	term->hover = 0;
+	term->entries = NULL;
+	i = 1;
+	while (i < ac)
+	{
+		entry.name = ft_strdup(av[i]);
+		entry.len = ft_strlen(av[i]);
+		entry.selected = 0;
+		if (!(tmp = ft_lstdnew(&entry, sizeof(t_entry))))
+			ft_error("ft_select: Entries fail.");
+		ft_lstdadd(&(term->entries), tmp);
+		if (entry.len > term->longest)
+			term->longest = entry.len;
+		i++;
+	}
+}
+
+/*
 void	init_entries(int ac, char **av)
 {
 	t_term	*term;
@@ -36,4 +64,4 @@ void	init_entries(int ac, char **av)
 			term->longest = term->entries[i].len;
 		i++;
 	}
-}
+}*/

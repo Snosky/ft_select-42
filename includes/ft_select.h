@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/24 02:49:20 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 18:26:26 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct			s_term
 	char		*name;
 	char		*cap[NB_CAP];
 	int			fd;
-	t_entry		*entries;
+	t_lstd		*entries;
 	int			nb_entries;
 	int			total_entries;
 	int			longest;
