@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 01:22:03 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 19:02:16 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 19:45:36 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	ft_goto_right(void)
 	while (i < term->winsize.ws_row)
 	{
 		term->hover = term->hover->next;
+		term->hoverid++;
+		if (term->hover == term->entries->prev)
+			term->hoverid = 0;
 		i++;
 	}
 }

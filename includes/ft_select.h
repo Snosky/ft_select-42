@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 19:08:01 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 19:38:02 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct			s_term
 	int			nb_entries;
 	int			total_entries;
 	t_lstd		*hover;
+	int			hoverid;
 	int			longest;
 	int			nb_column;
 	int			total_column;

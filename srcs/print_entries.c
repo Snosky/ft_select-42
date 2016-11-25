@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:00:24 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 19:29:15 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/25 19:44:57 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ void	print_entries(void)
 		term->entries = term->entries->next;
 		i++;
 	}
+	tputs(tgoto(term->cap[CM], term->winsize.ws_col - 5, term->winsize.ws_row), 1, tputc);
+	tputs(ft_itoa(term->hoverid), 0, tputc);
 }
