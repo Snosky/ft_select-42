@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 00:49:27 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 19:38:32 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/27 23:21:31 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ void	init_entries(int ac, char **av)
 		i++;
 	}
 	term->hover = term->entries;
-	term->hoverid = 1;
 }

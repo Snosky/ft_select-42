@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 02:33:54 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 19:48:35 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/27 23:22:21 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,4 @@ void		ft_goto_down(void)
 
 	term = ft_term();
 	term->hover = term->hover->next;
-	term->hoverid++;
-	if (term->hover == term->entries)
-		term->hoverid = 1;
 }
