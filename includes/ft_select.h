@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/27 23:21:19 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/28 18:23:22 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct winsize	t_winsize;
 typedef struct			s_entry
 {
 	char	*name;
-	int		len;
 	short	selected;
 	int		id;
 }						t_entry;
@@ -57,12 +56,12 @@ typedef struct			s_term
 	int			fd;
 	t_lstd		*entries;
 	int			nb_entries;
-	int			total_entries;
 	t_lstd		*hover;
 	int			longest;
 	int			nb_column;
 	int			total_column;
 	int			padding_left;
+	int			padding_bottom;
 }						t_term;
 
 void					init_term(void);
@@ -94,6 +93,7 @@ void					init_signals(void);
 void					sig_win_resize(int i);
 void					sig_exit(int i);
 void					sig_stop(int i);
+void					sig_cont(int i);
 
 void					refresh_padding_left(void);
 #endif

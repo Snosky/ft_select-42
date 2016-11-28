@@ -6,32 +6,35 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 02:02:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/21 02:23:04 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/28 18:19:43 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-/* TODO : Pas dur */
 void	scroll_bar(void)
 {
 	t_term	*term;
+	int		size_col;
 	int		i;
-	int		total_col;
-	int		bar_size;
+	int		left;
 
 	term = ft_term();
+	size_col = term->winsize.ws_col / term->total_column;
+	left = term->winsize.ws_col % term->total_column;
 	i = 0;
-	total_col = (term->nb_entries / term->winsize.ws_row) + 1;
-	bar_size = ((term->nb_column / total_col) * 100);
-	if (total_col <= term->nb_column)
+	if (size_col == 0)
 		return ;
-
-	/* Ceci est un test */
-	tputs(tgoto(term->cap[CM], 0, term->winsize.ws_row), 1, tputc);
-	while (i < term->winsize.ws_col)
+	tputs(tgoto(term->cap[CM], left / 2, term->winsize.ws_row), 1, tputc);
+	tputs(term->cap[MR], 0, tputc);
+	while (i < term->winsize.ws_col - left)
 	{
-		tputs("-", 0, tputc);
+		if (i >= (term->padding_left * size_col) &&\
+			   	i <= (term->padding_left + term->nb_column) * size_col)
+		   tputs("#", 0, tputc);
+		else	
+			tputs("-", 0, tputc);
 		i++;
 	}
+	tputs(term->cap[ME], 0, tputc);
 }

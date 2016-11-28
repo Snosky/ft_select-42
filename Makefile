@@ -21,6 +21,7 @@ SRC_FILES = main.c \
 			sig_exit.c \
 			sig_win_resize.c \
 			sig_stop.c \
+			sig_cont.c \
 			winsize.c \
 			refresh_screen.c \
 			init_entries.c \

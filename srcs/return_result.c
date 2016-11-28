@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:15:52 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/25 18:43:37 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/28 16:59:37 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 int	return_result(void)
 {
-	/*t_term	*term;
+	t_term	*term;
 	int		i;
-	int		first;
+	t_entry	*entry;
+	int		space;
 
 	term = ft_term();
 	i = 0;
-	first = 1;
+	space = 0;
 	reset_default_term();
-	while (i < term->total_entries)
+	while (i < term->nb_entries)
 	{
-		if (term->entries[i].selected)
+		entry = (t_entry *)term->entries->content;
+		if (entry->selected)
 		{
-			if (!first)
+			if (space)
 				ft_putchar(' ');
-			ft_putstr(term->entries[i].name);
-			first = 0;
+			space = 1;
+			ft_putstr(entry->name);
 		}
+		term->entries = term->entries->next;
 		i++;
-	}*/
+	}
 	return (-1);
 }

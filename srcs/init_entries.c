@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 00:49:27 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 01:33:28 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/28 17:49:16 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_entries(int ac, char **av)
 	int		i;
 	t_lstd	*tmp;
 	t_entry	entry;
+	int		len;
 
 	term = ft_term();
 	term->longest = 0;
@@ -26,14 +27,15 @@ void	init_entries(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
+		len = ft_strlen(av[i]);
 		entry.name = ft_strdup(av[i]);
-		entry.len = ft_strlen(av[i]);
 		entry.selected = 0;
+		entry.id = i - 1;
 		if (!(tmp = ft_lstdnew(&entry, sizeof(t_entry))))
 			ft_error("ft_select: Entries fail.");
 		ft_lstdadd(&(term->entries), tmp);
-		if (entry.len > term->longest)
-			term->longest = entry.len;
+		if (len > term->longest)
+			term->longest = len;
 		i++;
 	}
 	term->hover = term->entries;
