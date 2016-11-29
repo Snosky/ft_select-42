@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 15:18:31 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 17:30:18 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/29 18:33:29 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void	ft_delete(void)
 	if (term->nb_entries == 0)
 		sig_exit(0);
 	term->hover = next;
+	winsize();
 }

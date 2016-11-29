@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/24 02:45:16 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 18:37:16 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/29 18:32:47 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	refresh_padding_left(void)
 	{
 		first = term->padding_left * row;
 		last = (term->padding_left + term->nb_column) * row - 1;
+		if (term->total_column < term->nb_column)
+		{
+			term->padding_left = 0;
+			break ;
+		}
 		if (term->padding_left < 0)
 			term->padding_left = term->total_column - term->nb_column;
 		else if (term->padding_left > term->total_column - term->nb_column)

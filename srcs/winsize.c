@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 01:49:09 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 17:31:36 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/29 18:27:57 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,5 @@ void	winsize(void)
 	{
 		term->nb_column = term->winsize.ws_col / (term->longest + 2);
 		term->total_column = (term->nb_entries / term->winsize.ws_row) + 1;
-		//if (term->nb_column >= term->total_column)
-		//	term->padding_left = 0;
 	}
 }
