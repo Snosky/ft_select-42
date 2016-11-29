@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:54:39 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 17:09:28 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/29 18:40:27 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	delete_entries(void *content, size_t size)
 	(void)size;
 }
 
-void	free_entries(void)
+void		free_entries(void)
 {
 	t_term	*term;
 	int		i;

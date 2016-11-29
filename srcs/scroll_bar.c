@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 02:02:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 18:19:43 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/29 18:48:21 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	scroll_bar(void)
 	while (i < term->winsize.ws_col - left)
 	{
 		if (i >= (term->padding_left * size_col) &&\
-			   	i <= (term->padding_left + term->nb_column) * size_col)
-		   tputs("#", 0, tputc);
-		else	
+		i <= (term->padding_left + term->nb_column) * size_col)
+			tputs("#", 0, tputc);
+		else
 			tputs("-", 0, tputc);
 		i++;
 	}

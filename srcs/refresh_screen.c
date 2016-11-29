@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 01:58:32 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/29 18:30:13 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/29 18:46:40 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	too_small(void)
 	return ;
 }
 
-void	refresh_screen(void)
+void		refresh_screen(void)
 {
 	t_term	*term;
 
@@ -35,7 +35,7 @@ void	refresh_screen(void)
 	term->padding_bottom = 1;
 	tputs(term->cap[CL], 0, tputc);
 	if (term->winsize.ws_col < term->longest + 2)
-		return too_small();
+		return (too_small());
 	refresh_padding_left();
 	if (term->nb_column < term->total_column)
 		scroll_bar();

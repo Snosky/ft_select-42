@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 00:57:21 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 17:57:42 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/11/29 18:41:27 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ static void	init_term2(void)
 		ft_error("ft_select: error: Can't find a termcap.");
 	ft_tputs("ti");
 	ft_tputs("vi");
+	term->longest = 0;
+	term->entries = NULL;
+	term->padding_left = 0;
 }
 
 void		init_term(void)
