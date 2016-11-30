@@ -12,7 +12,7 @@
 
 #include <ft_select.h>
 
-static void init_entries_var(int ac)
+static void	init_entries_var(int ac)
 {
 	t_term	*term;
 
