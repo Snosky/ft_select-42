@@ -25,6 +25,7 @@ void	sig_stop(int i)
 		cp[1] = 0;
 		reset_default_term();
 		ioctl(0, TIOCSTI, cp);
+		ft_putstr("\b\b\033[0J");
 		signal(SIGTSTP, SIG_DFL);
 	}
 }

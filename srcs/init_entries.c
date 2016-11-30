@@ -12,6 +12,17 @@
 
 #include <ft_select.h>
 
+static void init_entries_var(int ac)
+{
+		t_term	*term;
+
+		term = ft_term();
+		term->longest = 0;
+		term->entries = NULL;
+		term->padding_left = 0;
+		term->nb_entries = ac - 1;
+}
+
 void	init_entries(int ac, char **av)
 {
 	t_term	*term;
@@ -21,7 +32,7 @@ void	init_entries(int ac, char **av)
 	int		len;
 
 	term = ft_term();
-	term->nb_entries = ac - 1;
+	init_entries_var(ac);
 	i = 1;
 	while (i < ac)
 	{

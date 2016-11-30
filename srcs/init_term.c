@@ -26,9 +26,9 @@ static void	init_term2(void)
 		ft_error("ft_select: error: Can't find a termcap.");
 	ft_tputs("ti");
 	ft_tputs("vi");
-	term->longest = 0;
-	term->entries = NULL;
-	term->padding_left = 0;
+	//term->longest = 0;
+//	term->entries = NULL;
+//	term->padding_left = 0;
 }
 
 int		init_term(void)
@@ -41,7 +41,7 @@ int		init_term(void)
 		ft_error("ft_select: error: Can't get file descriptor.");
 	term->name = getenv("TERM");
 	if (term->name == NULL)
-		return (-1);	
+		return (-1);
 	success = tgetent(0, term->name);
 	if (success < 0)
 		ft_error("ft_select: error: Could not access the termcap data base.");

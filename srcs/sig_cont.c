@@ -17,10 +17,9 @@ void	sig_cont(int i)
 	t_term	*term;
 
 	(void)i;
+	init_term();
 	term = ft_term();
 	tcsetattr(0, TCSADRAIN, &(term->term));
-	ft_tputs("ti");
-	ft_tputs("vi");
 	init_signals();
 	winsize();
 	refresh_screen();
