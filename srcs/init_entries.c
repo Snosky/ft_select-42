@@ -14,39 +14,39 @@
 
 static void init_entries_var(int ac)
 {
-		t_term	*term;
+	t_term	*term;
 
-		term = ft_term();
-		term->longest = 0;
-		term->entries = NULL;
-		term->padding_left = 0;
-		term->nb_entries = ac - 1;
+	term = ft_term();
+	term->longest = 0;
+	term->entries = NULL;
+	term->padding_left = 0;
+	term->nb_entries = ac - 1;
 }
 
-void				init_entries(int ac, char **av)
+void		init_entries(int ac, char **av)
 {
-		t_term	*term;
-		int			i;
-		t_lstd	*tmp;
-		t_entry	entry;
-		int			len;
+	t_term	*term;
+	int		i;
+	t_lstd	*tmp;
+	t_entry	entry;
+	int		len;
 
-		term = ft_term();
-		init_entries_var(ac);
-		i = 1;
-		while (i < ac)
-		{
-			len = ft_strlen(av[i]);
-			entry.name = ft_strdup(av[i]);
-			entry.selected = 0;
-			entry.id = i - 1;
-			if (!(tmp = ft_lstdnew(&entry, sizeof(t_entry))))
-				ft_error("ft_select: Entries fail.");
-			ft_lstdadd(&(term->entries), tmp);
-			if (len > term->longest)
-				term->longest = len;
-			i++;
-		}
-		term->hover = term->entries;
-		winsize();
+	term = ft_term();
+	init_entries_var(ac);
+	i = 1;
+	while (i < ac)
+	{
+		len = ft_strlen(av[i]);
+		entry.name = ft_strdup(av[i]);
+		entry.selected = 0;
+		entry.id = i - 1;
+		if (!(tmp = ft_lstdnew(&entry, sizeof(t_entry))))
+			ft_error("ft_select: Entries fail.");
+		ft_lstdadd(&(term->entries), tmp);
+		if (len > term->longest)
+			term->longest = len;
+		i++;
+	}
+	term->hover = term->entries;
+	winsize();
 }
