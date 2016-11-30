@@ -26,9 +26,6 @@ static void	init_term2(void)
 		ft_error("ft_select: error: Can't find a termcap.");
 	ft_tputs("ti");
 	ft_tputs("vi");
-	//term->longest = 0;
-//	term->entries = NULL;
-//	term->padding_left = 0;
 }
 
 int		init_term(void)
