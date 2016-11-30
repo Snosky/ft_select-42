@@ -32,7 +32,9 @@ void		refresh_screen(void)
 	t_term	*term;
 
 	term = ft_term();
-	term->padding_bottom = 1;
+	term->padding_bottom = 0;
+	if (term->nb_column < term->total_column)
+		term->padding_bottom = 1;
 	tputs(term->cap[CL], 0, tputc);
 	if (term->winsize.ws_col < term->longest + 2)
 		return (too_small());
