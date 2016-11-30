@@ -28,7 +28,7 @@ static void	init_term2(void)
 	ft_tputs("vi");
 }
 
-int		init_term(void)
+int			init_term(void)
 {
 	t_term	*term;
 	int		success;

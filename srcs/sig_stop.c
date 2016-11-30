@@ -15,7 +15,7 @@
 void	sig_stop(int i)
 {
 	t_term	*term;
-	char		cp[2];
+	char	cp[2];
 
 	(void)i;
 	if (isatty(1))
