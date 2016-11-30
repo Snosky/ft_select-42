@@ -1,10 +1,11 @@
 EXEC = ft_select
 
 CC = clang
-CFLAGS = -Werror -Wextra -Wall 
+CFLAGS = -Werror -Wextra -Wall
 
 INCLUDES = -Iincludes -Ilibft/includes
 
+LIBFTDIR = libft/
 LIBS = libft/libft.a -ltermcap
 
 SRCDIR = srcs/
@@ -42,21 +43,13 @@ DIRS = $(OBJDIR)
 
 OBJS = $(SRC_FILES:%.c=$(OBJDIR)%.o)
 
-.SILENT:
-
 all: directories $(EXEC)
 
-$(EXEC):
-	@($(MAKE) -C libft)
-	@echo "\\033[1;34m--- $(EXEC) compilation ---\\033[39m"
-	@echo "\\033[1;35mObjects compilation : \\033[39m"
-	$(MAKE) $(OBJS)
-	@echo "\n\033[1;35mFinal compilation\\033[0;39m"
-	$(CC) -o $@ $(OBJS) $(LIBS)
-	@echo "\\033[1;34m--- $(EXEC) compilation done ---\\033[39m"
+$(EXEC): $(OBJS)
+	@($(MAKE) -C $(LIBFTDIR))
+	$(CC) -o $@ $^ $(LIBS)
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
-	@echo -n "\\033[1;32m.\\033[0;39m"
 	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDES)
 
 .PHONY: directories re clean fclean
@@ -64,14 +57,12 @@ $(OBJDIR)%.o: $(SRCDIR)%.c
 re: fclean all
 
 clean:
-	rm -rf $(OBJDIR)
-	@echo "\033[32m--- Objects form $(EXEC) deleted ---\\033[0;39m"
-	#@($(MAKE) -C libft $@)
+	rm -rf $(DIRS)
+	@($(MAKE) -C $(LIBFTDIR) $@)
 
 fclean: clean
 	rm -rf $(EXEC)
-	@echo "\033[32m--- $(EXEC) deleted ---\\033[0;39m"
-	#@($(MAKE) -C libft $@)
+	@($(MAKE) -C $(LIBFTDIR) $@)
 
 directories: $(DIRS)
 
