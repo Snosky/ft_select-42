@@ -19,6 +19,7 @@ void	init_signals(void)
 	signal(SIGABRT, sig_exit);
 	signal(SIGKILL, sig_exit);
 	signal(SIGQUIT, sig_exit);
-	signal(SIGSTOP, sig_stop);
+	signal(SIGSTOP, sig_exit);
+	signal(SIGTSTP, sig_stop);
 	signal(SIGCONT, sig_cont);
 }

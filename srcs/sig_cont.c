@@ -19,6 +19,9 @@ void	sig_cont(int i)
 	(void)i;
 	term = ft_term();
 	tcsetattr(0, TCSADRAIN, &(term->term));
+	ft_tputs("ti");
+	ft_tputs("vi");
+	init_signals();
 	winsize();
 	refresh_screen();
 }

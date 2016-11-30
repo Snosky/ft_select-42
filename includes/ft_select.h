@@ -64,7 +64,7 @@ typedef struct			s_term
 	int			padding_bottom;
 }						t_term;
 
-void					init_term(void);
+int					init_term(void);
 t_term					*ft_term(void);
 void					reset_default_term(void);
 int						tputc(int i);

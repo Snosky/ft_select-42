@@ -14,7 +14,17 @@
 
 void	sig_stop(int i)
 {
+	t_term	*term;
+	char		cp[2];
+
 	(void)i;
-	reset_default_term();
-	ft_putstr("ft_select: background\n");
+	if (isatty(1))
+	{
+		term = ft_term();
+		cp[0] = term->term.c_cc[VSUSP];
+		cp[1] = 0;
+		reset_default_term();
+		ioctl(0, TIOCSTI, cp);
+		signal(SIGTSTP, SIG_DFL);
+	}
 }

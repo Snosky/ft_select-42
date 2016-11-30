@@ -31,7 +31,7 @@ static void	init_term2(void)
 	term->padding_left = 0;
 }
 
-void		init_term(void)
+int		init_term(void)
 {
 	t_term	*term;
 	int		success;
@@ -41,7 +41,7 @@ void		init_term(void)
 		ft_error("ft_select: error: Can't get file descriptor.");
 	term->name = getenv("TERM");
 	if (term->name == NULL)
-		term->name = "DEFAULT_TERM";
+		return (-1);	
 	success = tgetent(0, term->name);
 	if (success < 0)
 		ft_error("ft_select: error: Could not access the termcap data base.");
@@ -56,4 +56,5 @@ void		init_term(void)
 	term->term.c_cc[VTIME] = 0;
 	tcsetattr(0, TCSADRAIN, &(term->term));
 	init_term2();
+	return (0);
 }
