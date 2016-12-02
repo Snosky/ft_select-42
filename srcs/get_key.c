@@ -6,19 +6,14 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:43:08 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/22 16:31:46 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/12/02 02:26:37 by tpayen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_select.h>
 
-int	get_key(void)
+static int	get_key2(int key)
 {
-	t_term	*term;
-	int		key;
-
-	term = ft_term();
-	read(0, &key, sizeof(int));
 	if (key == K_UP)
 		ft_goto_up();
 	else if (key == K_DOWN)
@@ -39,4 +34,16 @@ int	get_key(void)
 		return (-1);
 	}
 	return (1);
+}
+
+int				get_key(void)
+{
+	t_term	*term;
+	int		key;
+
+	term = ft_term();
+	if (term->winsize.ws_col < term->longest + 2)
+		return (1);
+	read(0, &key, sizeof(int));
+	return (get_key2(key));
 }
