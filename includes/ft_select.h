@@ -6,7 +6,7 @@
 /*   By: tpayen <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:40:33 by tpayen            #+#    #+#             */
-/*   Updated: 2016/11/28 18:23:22 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/12/06 14:17:11 by aalliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct			s_term
 	int			padding_bottom;
 }						t_term;
 
-int					init_term(void);
+int						init_term(void);
 t_term					*ft_term(void);
 void					reset_default_term(void);
 int						tputc(int i);

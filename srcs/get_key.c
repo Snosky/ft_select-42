@@ -6,7 +6,7 @@
 /*   By: tpayen <tpayen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 01:43:08 by tpayen            #+#    #+#             */
-/*   Updated: 2016/12/02 02:26:37 by tpayen           ###   ########.fr       */
+/*   Updated: 2016/12/06 14:17:34 by aalliot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,22 @@ static int	get_key2(int key)
 		do_space();
 	else if (key == K_RETURN)
 		return (return_result());
-	else if (key == K_ESC)
-	{
-		reset_default_term();
-		return (-1);
-	}
 	return (1);
 }
 
-int				get_key(void)
+int			get_key(void)
 {
 	t_term	*term;
 	int		key;
 
 	term = ft_term();
-	if (term->winsize.ws_col < term->longest + 2)
-		return (1);
 	read(0, &key, sizeof(int));
+	if (key == K_ESC)
+	{
+		reset_default_term();
+		return (-1);
+	}
+	if (term->winsize.ws_col < term->longest + 2)
+		return (0);
 	return (get_key2(key));
 }
